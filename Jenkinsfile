@@ -43,7 +43,7 @@ pipeline {
 		stage('DockerHub Push') {
 
 			steps {
-				sh 'docker push spwilson87/nodejs-mini'
+				sh 'docker push spwilson87/nodejs-mini:latest'
 			}
 		}
 	}
