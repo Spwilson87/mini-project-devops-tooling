@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend
+spec:
+  selector:
+    app: nginx-mini
+  ports:
+  - port: 80
+    targetPort: 80
+---
+apiVersion: v1
+kind: Pod
+metadata: 
+  name: nginx-mini
+  labels: 
+    app: nginx-mini
+spec: 
+  containers: 
+  - name: nginx-mini
+    image: spwilson87/nginx-mini:latest
+    ports:
+    - containerPort: 80
