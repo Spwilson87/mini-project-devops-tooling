@@ -69,7 +69,6 @@ pipeline {
 	post {
 		always {
 			sh 'docker logout'
-            sh 'kubectl delete --all pods'
 		}
 	}
                     }
