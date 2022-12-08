@@ -1,4 +1,4 @@
 cd frontend
-docker build -t nginx-mini:latest .
+docker build -t spwilson87/nginx-mini:latest .
 cd ../backend
-docker build -t nodejs-mini:latest .
+docker build -t spwilson87/nodejs-mini:latest .
