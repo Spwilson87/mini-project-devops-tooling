@@ -48,6 +48,14 @@ pipeline {
 		}
 	}
 
+    stages {
+        stage('ssh to eks control'){
+            steps {
+                sh "ssh ubuntu@13.42.22.112"
+
+            }
+        }
+
 	post {
 		always {
 			sh 'docker logout'
