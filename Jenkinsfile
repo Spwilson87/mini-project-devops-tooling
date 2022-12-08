@@ -1,8 +1,12 @@
 pipeline {
     agent any
-environment {     
-    DOCKERHUB_CREDENTIALS= credentials('dockerhub1')     
-} 
+    environment { 
+        reg1 = "spwilson87/nodejs-mini"
+        reg2 = "spwilson87/nginx-mini" 
+        regCred = 'dockerhub1'
+        image1 = "nodejs-mini:latest"
+        image2 = "nginx-mini:latest"
+    }
     stages {
         stage('build images'){
             steps {
@@ -30,21 +34,17 @@ environment {
                         currentBuild.result = 'ABORTED'
                         error("Aborting nginx-mini image does not exist.")
                         }
-		stage('dockerHub Login') {
+        stage('Push to DockerHub'){
+            steps {
+                script{
+                    docker.withRegistry( '', registryCredential ){
+                        dockerImage1.push()
+                        dockerImage2.push()
+                    }
+                }
 
-			steps {
-				sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
-			}
-		}
-
-		stage('DockerHub Push') {
-
-			steps {
-				sh 'docker push spwilson87/nodejs-mini:latest'
-			}
-		}
-	}
-
+            }
+        }
 	post {
 		always {
 			sh 'docker logout'
