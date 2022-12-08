@@ -1,8 +1,8 @@
 pipeline {
     agent any
-    environment {
-		DOCKERHUB_CREDENTIALS=credentials('dockerhub')
-	}
+environment {     
+    DOCKERHUB_CREDENTIALS= credentials('dockerhub')     
+} 
     stages {
         stage('build images'){
             steps {
@@ -30,14 +30,20 @@ pipeline {
                         currentBuild.result = 'ABORTED'
                         error("Aborting nginx-mini image does not exist.")
                         }
-        stage('Push to DockerHub'){
-            steps {
-                sh "echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin"
-                sh "docker push spwilson87/nodejs-mini:latest"
-                sh "docker push spwilson87/nginx-mini:latest"
-
-            }
-        }
+        stage('Login to Docker Hub') {      	
+            steps{                       	
+	            sh 'echo $DOCKERHUB_CREDENTIALS_PSW | sudo docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'                		
+	            echo 'Login Completed'      
+    }           
+}   
+        stage('Push Image to Docker Hub') {         
+            steps{                            
+                sh 'docker push spwilson87/nodejs-mini:latest'           
+                echo 'Push Image Completed'       
+                sh 'docker push spwilson87/nginx-mini:latest'           
+                echo 'Push Image Completed'                      
+    }            
+}  
                     }
                 }        
             }
