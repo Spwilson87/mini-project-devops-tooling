@@ -1,4 +1,4 @@
 #!/bin/bash
 cd k8s-files
-kubectl apply -f backend.yml
-kubectl apply -f frontend.yml
+/var/lib/jenkins/kubectl apply -f backend.yml
+/var/lib/jenkins/kubectl apply -f frontend.yml
