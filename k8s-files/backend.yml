@@ -14,7 +14,7 @@ kind: Pod
 metadata: 
   name: nodejs-mini
   labels: 
-    app: nodejs-mini
+    app: mini-proj
 spec: 
   containers: 
   - name: nodejs-mini

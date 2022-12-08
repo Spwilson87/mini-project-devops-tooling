@@ -14,7 +14,7 @@ kind: Pod
 metadata: 
   name: nginx-mini
   labels: 
-    app: nginx-mini
+    app: mini-proj
 spec: 
   containers: 
   - name: nginx-mini

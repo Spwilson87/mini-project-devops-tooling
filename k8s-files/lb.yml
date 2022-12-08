@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-pod
+  labels:
+    app: demo-lb
+spec: 
+  containers:
+  - name: nginx-cont
+    image: nginx:alpine
+    ports:
+    - containerPort: 80
+--- # Separate the file into a new .yaml file below
+apiVersion: v1
+kind: Service
+metadata: 
+  name: loadbalancer
+  labels:
+    app: demo-lb
+spec: 
+  # selector is used to tell this service what pod it should be wrapping around
+  selector:
+    app: mini-proj # All pods with this label, it should load balance between 
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 80
+  type: LoadBalancer # The type of service we are creating
