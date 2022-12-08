@@ -46,10 +46,10 @@ pipeline {
 				sh 'docker push spwilson87/nodejs-mini:latest'
 			}
 		}
-                stage(''){
+                stage('deploy to k8s'){
             steps {
-                sh "chmod +x deploy.sh"
-                sh "./deploy.sh"
+                sh "pwd"
+                sh "kubectl get nodes"
 
             }
         }
