@@ -51,6 +51,11 @@ pipeline {
             steps {
                 sh "ssh ubuntu@13.42.22.112"
                 sh "ls"
+
+            }
+        }
+        stage('ssh check'){
+            steps {
                 script {
                     res = sh(returnStdout: true, script: "ls | grep k8s-files")
                     if (res.contains("k8s-files")){
