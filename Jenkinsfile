@@ -48,8 +48,8 @@ pipeline {
 		}
                 stage('deploy to k8s'){
             steps {
-                sh "pwd"
-                sh "kubectl get nodes"
+                sh "chmod +x deploy.sh"
+                sh "./deploy.sh"
 
             }
         }
