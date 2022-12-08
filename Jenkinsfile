@@ -44,6 +44,7 @@ pipeline {
 
 			steps {
 				sh 'docker push spwilson87/nodejs-mini:latest'
+                sh 'docker push spwilson87/ngnix-mini:latest'
 			}
 		}
                 stage('deploy to k8s'){
