@@ -46,7 +46,7 @@ pipeline {
 				sh 'docker push spwilson87/nodejs-mini:latest'
 			}
 		}
-	}
+	
         stage('ssh to eks control'){
             steps {
                 sh "ssh ubuntu@13.42.22.112"
@@ -64,8 +64,7 @@ pipeline {
                     else {
                         currentBuild.result = 'ABORTED'
                         error("Aborting ssh unsuccessful.")
-
-                }
+                        }
             }
         }
         }
@@ -75,3 +74,4 @@ pipeline {
 		}
 	}
                     }
+}
