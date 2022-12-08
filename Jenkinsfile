@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('build images'){
             steps {
-                sh "chmod +x build.sh"
+                sh "chmod +x build-image.sh"
                 sh "./build-image.sh"
 
             }
