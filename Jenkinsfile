@@ -47,19 +47,26 @@ pipeline {
 			}
 		}
 	}
-
-    stages {
         stage('ssh to eks control'){
             steps {
                 sh "ssh ubuntu@13.42.22.112"
+                sh "ls"
+                script {
+                    res = sh(returnStdout: true, script: "ls | grep k8s-files")
+                    if (res.contains("k8s-files")){
+                        echo 'ssh successful'
+                        }
+                    else {
+                        currentBuild.result = 'ABORTED'
+                        error("Aborting ssh unsuccessful.")
 
+                }
             }
         }
-
+        }
 	post {
 		always {
 			sh 'docker logout'
 		}
 	}
                     }
-}
