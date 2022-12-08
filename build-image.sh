@@ -1,3 +1,4 @@
+#!/bin/bash
 cd frontend
 docker build -t spwilson87/nginx-mini:latest .
 cd ../backend
