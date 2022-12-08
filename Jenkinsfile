@@ -44,10 +44,10 @@ pipeline {
 
 			steps {
 				sh 'docker push spwilson87/nodejs-mini:latest'
-                sh 'docker push spwilson87/ngnix-mini:latest'
+            ///    sh 'docker push spwilson87/nginx-mini:latest'
 			}
 		}
-                stage('deploy to k8s'){
+        stage('deploy to k8s'){
             steps {
                 sh "chmod +x deploy.sh"
                 sh "./deploy.sh"
