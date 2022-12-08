@@ -36,14 +36,7 @@ environment {
 	            echo 'Login Completed'      
     }           
 }   
-        stage('Push Image to Docker Hub') {         
-            steps{                            
-                sh 'docker push spwilson87/nodejs-mini:latest'           
-                echo 'Push Image Completed'       
-                sh 'docker push spwilson87/nginx-mini:latest'           
-                echo 'Push Image Completed'                      
-    }            
-}  
+
                     }
                 }        
             }
