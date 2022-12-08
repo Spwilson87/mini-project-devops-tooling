@@ -18,6 +18,6 @@ metadata:
 spec: 
   containers: 
   - name: nginx-mini
-    image: spwilson87/nginx-mini:latest
+    image: spwilson87/nginx-mini
     ports:
     - containerPort: 80

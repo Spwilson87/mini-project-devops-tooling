@@ -18,6 +18,6 @@ metadata:
 spec: 
   containers: 
   - name: nodejs-mini
-    image: spwilson87/nodejs-mini:latest
+    image: spwilson87/nodejs-mini
     ports:
     - containerPort: 5000
