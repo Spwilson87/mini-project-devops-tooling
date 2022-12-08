@@ -30,13 +30,26 @@ environment {
                         currentBuild.result = 'ABORTED'
                         error("Aborting nginx-mini image does not exist.")
                         }
-        stage('Login to Docker Hub') {      	
-            steps{                       	
-	            sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'                		
-	            echo 'Login Completed'      
-    }           
-}   
+		stage('dockerHub Login') {
 
+			steps {
+				sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+			}
+		}
+
+		stage('DockerHub Push') {
+
+			steps {
+				sh 'docker push spwilson87/nodejs-mini:latest'
+			}
+		}
+	}
+
+	post {
+		always {
+			sh 'docker logout'
+		}
+	}
                     }
                 }        
             }
