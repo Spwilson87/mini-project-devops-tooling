@@ -30,6 +30,9 @@ pipeline {
                         currentBuild.result = 'ABORTED'
                         error("Aborting nginx-mini image does not exist.")
                         }
+                }
+            }
+        }
 		stage('dockerHub Login') {
 
 			steps {
@@ -51,6 +54,3 @@ pipeline {
 		}
 	}
                     }
-                }        
-            }
-        }
